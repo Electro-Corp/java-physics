@@ -6,7 +6,7 @@ import javax.swing.*;
 
 
 public class Engine extends JPanel {
-    double xSize, ySize;
+    int xSize, ySize;
     
     public Engine() {
         init();
