@@ -1,2 +1,2 @@
 # java-physics
-## REALLY SHIT
+## ~~good~~ bad
