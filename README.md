@@ -1,2 +1,0 @@
-# java-physics
-## ~~good~~ bad
