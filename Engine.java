@@ -1,7 +1,8 @@
 import assets.*;
 import java.awt.*;
 import javax.swing.*;
-
+import physics.Physics;
+import assets.ValueHolder;
 public class Engine extends JPanel {
     int xSize, ySize;
 
@@ -36,7 +37,12 @@ public class Engine extends JPanel {
     
     public void paint(Graphics g) {
         g.setColor(Color.red);
-        g.fillRect(0,0, 100, 100);
+        Physics e = new Physics();
+
+        ValueHolder bruh = e.allXY(1,0,9.8,3);
+        for (int i = 0; i < bruh.xs.size(); i++){
+        g.fillRect(bruh.xs.get(i).intValue(),bruh.y.get(i).intValue(), 10, 10);
+        }
     }
 
     public Dimension getSize() {
