@@ -27,7 +27,6 @@ public class Engine extends JPanel {
         frame.pack();
         frame.setBounds(0, 0, xSize, ySize);
         this.setBounds(0, 0, xSize, ySize);
-
         this.repaint();
     }
 
