@@ -27,6 +27,7 @@ public class Physics
         List<Double> y = new ArrayList<Double>();
         double x = 0;
         double prevx, velocity;
+        prevx = x;
         for (double i = 0; i < 10.0; i++){
             velocity = velocityWithTimeAndInit(initV, i, acc);
             x = displaceWithAccAndTime(prevx, velocity, i, acc);
