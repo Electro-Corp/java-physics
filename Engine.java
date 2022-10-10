@@ -22,16 +22,18 @@ public class Engine extends JPanel {
         // name Physics
         // Frame can be resized
         CFrame frame = new CFrame(xSize, ySize, "Physics");
-        CPanel panel = new CPanel(xSize, ySize);
 
-        frame.add(panel);
+        frame.add(this);
         frame.pack();
         frame.setBounds(0, 0, xSize, ySize);
-        panel.setBounds(0, 0, xSize, ySize);
+        this.setBounds(0, 0, xSize, ySize);
 
-        panel.repaint();
+        this.repaint();
     }
 
+    public void paintBox(int x, int y) {
+        
+    }
     
     public void paint(Graphics g) {
         g.setColor(Color.red);
