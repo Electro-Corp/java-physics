@@ -39,9 +39,9 @@ public class Engine extends JPanel {
         g.setColor(Color.red);
         Physics e = new Physics();
 
-        ValueHolder bruh = e.allXY(1,0,9.8,3);
+        ValueHolder bruh = e.allXY(10,0,9.8,3);
         for (int i = 0; i < bruh.xs.size(); i++){
-        g.fillRect(bruh.xs.get(i).intValue(),bruh.y.get(i).intValue(), 10, 10);
+ g.fillRect(bruh.xs.get(i).intValue(),bruh.y.get(i).intValue(), 10, 10);
         }
     }
 
