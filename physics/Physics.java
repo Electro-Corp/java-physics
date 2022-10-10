@@ -28,14 +28,14 @@ public class Physics
         double x = 0;
         double prevx, velocity;
         for (double i = 0; i < 10.0; i++){
-            velocity = velocityWithTimeAndInit(initV, i, acc)
+            velocity = velocityWithTimeAndInit(initV, i, acc);
             x = displaceWithAccAndTime(prevx, velocity, i, acc);
             prevx = x;
             xs.add(x);
         }
         prevx = height;
         for (double i = 0; i < 10.0; i++){
-            velocity = velocityWithTimeAndInit(0, i, 9.8)
+            velocity = velocityWithTimeAndInit(0, i, 9.8);
             x = displaceWithAccAndTime(prevx, velocity, i, 9.8);
             prevx = x;
             y.add(x);
