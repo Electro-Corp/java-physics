@@ -1,33 +1,44 @@
 import assets.*;
-import javafx.scene.paint.Color;
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
-
 
 public class Engine extends JPanel {
     int xSize, ySize;
-    
+
     public Engine() {
+        xSize = 400;
+        ySize = 400;
         init();
-    }   
+    }
+
+    public Engine(int x, int y) {
+        xSize = x;
+        ySize = y;
+        init();
+    }
 
     private void init() {
-        // initializes a JFrame with a height of 400px and a width of 400px with the name Physics 
+        // initializes a JFrame with a height of 400px and a width of 400px with the
+        // name Physics
         // Frame can be resized
-        CFrame frame = new CFrame(400, 400, "Physics");
-        CPanel panel = new CPanel(400,400);
-    }   
+        CFrame frame = new CFrame(xSize, ySize, "Physics");
+        CPanel panel = new CPanel(xSize, ySize);
 
-        @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);  
-        g.drawRect(230,80,10,10);  
-        g.setColor(Color.RED);  
-        g.fillRect(230,80,10,10);  
-      }
+        frame.add(panel);
+        frame.pack();
+        frame.setBounds(0, 0, xSize, ySize);
+        panel.setBounds(0, 0, xSize, ySize);
+
+        panel.repaint();
+    }
+
     
-      public Dimension getPreferredSize() {
+    public void paint(Graphics g) {
+        g.setColor(Color.red);
+        g.fillRect(0,0, 100, 100);
+    }
+
+    public Dimension getSize() {
         return new Dimension(xSize, ySize); // appropriate constants
-      }
+    }
 }
