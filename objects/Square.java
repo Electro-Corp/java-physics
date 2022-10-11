@@ -2,7 +2,6 @@ package objects;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import javax.swing.*;
 import assets.*;
 
 public class Square {
