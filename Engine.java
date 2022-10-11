@@ -1,8 +1,12 @@
 import assets.*;
-import java.awt.*;
+import assets.Point;
+
+import java.awt.Graphics;
+import java.awt.Color;
 import javax.swing.*;
 import physics.Physics;
-import assets.ValueHolder;
+import objects.Square;
+
 public class Engine extends JPanel {
     int xSize, ySize;
 
@@ -31,21 +35,16 @@ public class Engine extends JPanel {
         this.repaint();
     }
 
-    public void paintBox(int x, int y) {
-        
-    }
-    
     public void paint(Graphics g) {
         g.setColor(Color.red);
         Physics e = new Physics();
 
-        ValueHolder bruh = e.allXY(10,0,9.8,3);
-        for (int i = 0; i < bruh.xs.size(); i++){
- g.fillRect(bruh.xs.get(i).intValue(),bruh.y.get(i).intValue(), 10, 10);
+        ValueHolder bruh = e.allXY(10, 0, 9.8, 3);
+        for (int i = 0; i < bruh.xs.size(); i++) {
+            g.fillRect(bruh.xs.get(i).intValue(), bruh.y.get(i).intValue(), 10, 10);
         }
-    }
 
-    public Dimension getSize() {
-        return new Dimension(xSize, ySize); // appropriate constants
+        Square s = new Square(new Point(10, 10), new Point(20, 20));
+        s.render(g);
     }
 }
