@@ -12,7 +12,8 @@ import objects.Square;
 
 public class Engine extends JPanel implements ActionListener, KeyListener{
     int xSize, ySize, i;
-    Graphics gra;
+    ArrayList<Square> squaresToRender = new ArrayList<>();
+
     public Engine() {
         xSize = 400;
         ySize = 400;
@@ -41,10 +42,6 @@ public class Engine extends JPanel implements ActionListener, KeyListener{
     }
 
     public void paint(Graphics g) {
-        ArrayList<Square> squaresToRender = new ArrayList<>();
-        for (int j=0;j<squaresToRender.size(); j++) {
-            squaresToRender.remove(j);
-        }
         g.setColor(Color.red);
         Physics e = new Physics();
         ValueHolder bruh = e.allXY(10, 0, 9.8, 3);
