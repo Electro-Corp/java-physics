@@ -7,12 +7,13 @@ import java.util.ArrayList;
 import java.util.EventListener;
 import java.awt.Color;
 import javax.swing.*;
-import physics.Physics;
-import objects.Square;
+import physics.RightVelocity;
+import objects.*;
 
 public class Engine extends JPanel implements ActionListener, KeyListener {
     int xSize, ySize, i;
     ArrayList<Square> squaresToRender = new ArrayList<>();
+    ArrayList<Circle> circlesToRender = new ArrayList<>();
 
     public Engine() {
         xSize = 400;
@@ -44,19 +45,40 @@ public class Engine extends JPanel implements ActionListener, KeyListener {
     public void paint(Graphics g) {
         super.paint(g);
         g.setColor(Color.red);
-        Physics e = new Physics();
-        ValueHolder bruh = e.allXY(10, 0, 9.8, 3);
-        squaresToRender = new ArrayList<Square>();
+        RightVelocity rV = new RightVelocity();
+
+        ValueHolder squareCords = rV.allXY(10, 0, 9.8, 3);
+        // renderSquares(g, squareCords);
+
+        ValueHolder circleCords = rV.allXY(10, 0, 9.8, 3);
+        renderCircles(g, circleCords);
+    }
+
+    public void renderCircles(Graphics g, ValueHolder circleCords) {
+        circlesToRender = new ArrayList<Circle>();
+
         for (int j; squaresToRender.size() < i;) {
-            squaresToRender.add(new Square(new Point(bruh.xs.get(i).intValue(), bruh.y.get(i).intValue()),
-                    new Point(bruh.xs.get(i).intValue() + 10, bruh.y.get(i).intValue() + 10)));
+            circlesToRender.add(new Circle(new Point(circleCords.xs.get(i).intValue(),
+                    circleCords.y.get(i).intValue()),
+                    new Point(circleCords.xs.get(i).intValue() + 10, circleCords.y.get(i).intValue() + 10)));
+        }
+
+        for (int j = 0; j < circlesToRender.size(); j++) {
+            circlesToRender.get(j).render(g);
+        }
+    }
+
+    public void renderSquares(Graphics g, ValueHolder squareCords) {
+        squaresToRender = new ArrayList<Square>();
+
+        for (int j; squaresToRender.size() < i;) {
+            squaresToRender.add(new Square(new Point(squareCords.xs.get(i).intValue(), squareCords.y.get(i).intValue()),
+                    new Point(squareCords.xs.get(i).intValue() + 10, squareCords.y.get(i).intValue() + 10)));
         }
 
         for (int j = 0; j < squaresToRender.size(); j++) {
             squaresToRender.get(j).render(g);
         }
-
-        System.out.println(squaresToRender);
     }
 
     @Override
@@ -65,14 +87,9 @@ public class Engine extends JPanel implements ActionListener, KeyListener {
 
     public void keyPressed(KeyEvent e) {
         int keycode = e.getKeyCode();
-        System.out.println(keycode);
         if (keycode == KeyEvent.VK_LEFT) {
             if (i > 0)
                 i--;
-            System.out.println("i: " + i);
-            System.out.println("Size Before: " + squaresToRender.size());
-            squaresToRender.remove(squaresToRender.size() - 1);
-            System.out.println("Size After: " + squaresToRender.size());
         } else if (keycode == KeyEvent.VK_RIGHT) {
             i++;
         }
