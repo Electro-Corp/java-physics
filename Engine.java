@@ -10,7 +10,7 @@ import javax.swing.*;
 import physics.Physics;
 import objects.Square;
 
-public class Engine extends JPanel implements ActionListener, KeyListener{
+public class Engine extends JPanel implements ActionListener, KeyListener {
     int xSize, ySize, i;
     ArrayList<Square> squaresToRender = new ArrayList<>();
 
@@ -42,16 +42,23 @@ public class Engine extends JPanel implements ActionListener, KeyListener{
     }
 
     public void paint(Graphics g) {
+        super.paint(g);
         g.setColor(Color.red);
         Physics e = new Physics();
         ValueHolder bruh = e.allXY(10, 0, 9.8, 3);
-        squaresToRender.add(new Square(new Point(bruh.xs.get(i).intValue(), bruh.y.get(i).intValue()), new Point(bruh.xs.get(i).intValue()+10, bruh.y.get(i).intValue()+10)));
-        for (int j=0;j<squaresToRender.size(); j++) {
+        squaresToRender = new ArrayList<Square>();
+        for (int j; squaresToRender.size() < i;) {
+            squaresToRender.add(new Square(new Point(bruh.xs.get(i).intValue(), bruh.y.get(i).intValue()),
+                    new Point(bruh.xs.get(i).intValue() + 10, bruh.y.get(i).intValue() + 10)));
+        }
+
+        for (int j = 0; j < squaresToRender.size(); j++) {
             squaresToRender.get(j).render(g);
         }
-        
+
+        System.out.println(squaresToRender);
     }
-        
+
     @Override
     public void actionPerformed(ActionEvent e) {
     }
@@ -60,21 +67,25 @@ public class Engine extends JPanel implements ActionListener, KeyListener{
         int keycode = e.getKeyCode();
         System.out.println(keycode);
         if (keycode == KeyEvent.VK_LEFT) {
-            if (i>=1) i--;
+            if (i > 0)
+                i--;
+            System.out.println("i: " + i);
+            System.out.println("Size Before: " + squaresToRender.size());
+            squaresToRender.remove(squaresToRender.size() - 1);
+            System.out.println("Size After: " + squaresToRender.size());
         } else if (keycode == KeyEvent.VK_RIGHT) {
-            i++;
-        } else if (keycode == KeyEvent.VK_UP) {
             i++;
         }
 
         this.repaint();
         this.setVisible(true);
     }
-    
+
     public void keyReleased(KeyEvent e) {
-        
+
     }
+
     public void keyTyped(KeyEvent e) {
-        
+
     }
 }

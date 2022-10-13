@@ -38,4 +38,8 @@ public class Square {
         g.setColor(Color.BLUE);
         g.fillRect(p1.x(), p1.y(), width(), height());
     }
+
+    public String toString() {
+        return "[" + p1 + ", " + p2 + "]";
+    }
 }
