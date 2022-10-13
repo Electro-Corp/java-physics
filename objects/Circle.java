@@ -35,7 +35,7 @@ public class Circle {
     }
 
     public void render(Graphics g) {
-        g.setColor(Color.red);
+        g.setColor(Color.RED);
         g.fillOval(p1.x(), p1.y(), width(), height());
     }
 
